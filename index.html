@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    
     <link rel="stylesheet" href="../style/style.css">
-     <link rel="stylesheet" href="../style/styleMain.css">
+     <link rel="stylesheet" href="../style/index.css">
     <style>
         @import url('https://fonts.cdnfonts.com/css/arcade-classic');
 </style>
@@ -13,10 +13,7 @@
     <title>Jojo games</title>
 </head>
 <body>
-    <header>
-    <h1>JOJO GAMES</h1>
-    <h3>welcome in the universe of arcade games</h3>
-     </header>
+  <h1><img src="../image/fced32d2f9744995b81d22508f21e1f9 (2).png" alt="Logo"></h1>
     <form action="/action_page.php" method="post">
       <div class="form">
         <div class="container">
@@ -36,5 +33,168 @@
       </form>
     </div>
     <script src="script/script.js"></script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/style.css">
+    <!-- <link rel="stylesheet" href="../style/index.css"> -->
+    <style>
+     @import url('https://fonts.cdnfonts.com/css/arcade-classic');
+      body {
+          font-family: 'Arcade Classic', sans-serif;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          background-color: #f0f0f0;
+      }
+      h1 {
+          margin-bottom: 20px;
+      }
+      .form {
+          background: #fff;
+          padding: 20px;
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(0,0,0,0.1);
+          margin-bottom: 20px;
+      }
+      .container {
+          display: flex;
+          flex-direction: column;
+      }
+      .container label {
+          margin-bottom: 8px;
+      }
+      .container input {
+          margin-bottom: 20px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+      }
+      .container button {
+          padding: 10px;
+          border: none;
+          border-radius: 4px;
+          background-color: #007BFF;
+          color: #fff;
+          cursor: pointer;
+      }
+      .container button:hover {
+          background-color: #0056b3;
+      }
+      .cancelbtn {
+          background-color: #dc3545;
+      }
+      .cancelbtn:hover {
+          background-color: #c82333;
+      }
+      .message {
+          margin-top: 10px;
+          padding: 10px;
+          border-radius: 4px;
+          display: none;
+      }
+      .message.success {
+          background-color: #d4edda;
+          color: #155724;
+      }
+      .message.error {
+          background-color: #f8d7da;
+          color: #721c24;
+      }
+  </style>
+  <title>Jojo Games</title>
+</head>
+<body>
+  <h1><img src="../image/fced32d2f9744995b81d22508f21e1f9 (2).png" alt="Logo"></h1>
+  <form id="loginForm" onsubmit="return login()">
+      <div class="form">
+          <div class="container">
+              <label for="uname"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" id="uname" required>
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" id="psw" required>
+              <button type="submit">Login</button>
+              <div id="loginMessage" class="message"></div>
+          </div>
+      </div>
+  </form>
+  <form id="registerForm" style="display:none;">
+      <div class="form">
+          <div class="container">
+              <label for="newUname"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" id="newUname" required>
+              <label for="newEmail"><b>Email</b></label>
+              <input type="email" placeholder="Enter Email" id="newEmail" required>
+              <label for="newPsw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" id="newPsw" required>
+              <button type="button" onclick="register()">Sign Up</button>
+              <button type="button" class="cancelbtn" onclick="showLogin()">Cancel</button>
+              <div id="registerMessage" class="message"></div>
+          </div>
+      </div>
+  </form>
+  <button type="button" class="cancelbtn" onclick="showRegister()">Sign-Up</button>
+  <script>
+      function showRegister() {
+          document.getElementById('loginForm').style.display = 'none';
+          document.getElementById('registerForm').style.display = 'block';
+          clearMessages();
+      }
+
+      function showLogin() {
+          document.getElementById('registerForm').style.display = 'none';
+          document.getElementById('loginForm').style.display = 'block';
+          clearMessages();
+      }
+
+      function clearMessages() {
+          document.getElementById('loginMessage').style.display = 'none';
+          document.getElementById('registerMessage').style.display = 'none';
+      }
+
+      function displayMessage(elementId, message, isSuccess) {
+          const messageElement = document.getElementById(elementId);
+          messageElement.textContent = message;
+          messageElement.className = `message ${isSuccess ? 'success' : 'error'}`;
+          messageElement.style.display = 'block';
+      }
+
+      function register() {
+          const username = document.getElementById('newUname').value;
+          const email = document.getElementById('newEmail').value;
+          const password = document.getElementById('newPsw').value;
+
+          if (username && email && password) {
+              const user = { username, email, password };
+              localStorage.setItem('user', JSON.stringify(user));
+              displayMessage('registerMessage', 'Registration successful!', true);
+              setTimeout(showLogin, 2000);
+          } else {
+              displayMessage('registerMessage', 'Please fill in all fields.', false);
+          }
+      }
+
+      function login() {
+          const username = document.getElementById('uname').value;
+          const password = document.getElementById('psw').value;
+          const storedUser = JSON.parse(localStorage.getItem('user'));
+
+          if (storedUser && storedUser.username === username && storedUser.password === password) {
+              displayMessage('loginMessage', 'Login successful!', true);
+              // Redirect to another page or perform other actions upon successful login
+              return true;
+          } else {
+              displayMessage('loginMessage', 'Invalid username or password.', false);
+              return false;
+          }
+      }
+  </script>
 </body>
 </html>
