@@ -37,5 +37,18 @@ button:hover{
 }
 a{
     text-decoration: none;
-    font-family:url("https://fonts.cdnfonts.com/css/arcade-classic");
+    font-family: 'ArcadeClassic', sans-serif;
 }
+a:hover{
+    color: blueviolet;
+}
+
+@media screen and (max-width: 300px) {
+    span.psw {
+      display: block;
+      float: none;
+    }
+    .cancelbtn {
+      width: 100%;
+    }
+  }

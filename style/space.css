@@ -138,3 +138,12 @@ button {
   margin-top: 10px;
   text-align: center;
 } 
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+}

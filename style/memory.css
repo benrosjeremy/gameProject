@@ -143,3 +143,12 @@
     font-size: 1em;
     cursor: pointer;
 }
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+}
