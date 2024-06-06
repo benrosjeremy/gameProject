@@ -31,9 +31,6 @@
 //     div.appendChild(span);
 //     container.appendChild(div);
 
-
-
-
 // //     div.addEventListener("click", game);
 // //     function geme() {
 // //         span.style.display="block";
@@ -46,12 +43,10 @@
 // //                 firstVal='';
 // //             }
 // //             //בדיקה אם הכל כבר הפוך - ליגמור מישחק
-      
 
 // //     }
 //   }
 // }
-
 
 // function shuffleArray(array) {
 //   for (let i = array.length - 1; i > 0; i--) {
@@ -67,9 +62,29 @@ let hard = document.querySelector(".hard");
 let container = document.querySelector(".container");
 let winMessage = document.getElementById("winMessage");
 let newGameButton = document.getElementById("newGameButton");
-let arr = [ "😊", "😊", "😂", "😂", "🤣", "🤣", "😍", "😍", "😘", "😘", "😎", "😎", "🤩", "🤩", "🙂", "🙂"];
+let back = document.querySelector(".back");
+let arr = [
+  "😊",
+  "😊",
+  "😂",
+  "😂",
+  "🤣",
+  "🤣",
+  "😍",
+  "😍",
+  "😘",
+  "😘",
+  "😎",
+  "😎",
+  "🤩",
+  "🤩",
+  "🙂",
+  "🙂",
+];
 
 easy.addEventListener("click", function () {
+  back.style.display = "none";
+
   createCards(8);
 });
 medium.addEventListener("click", function () {
@@ -88,27 +103,27 @@ function createCards(num) {
   let Arr = shuffleArray(arr.slice(0, num));
   choise.style.display = "none";
   container.style.display = "grid";
-  //container.style.gridTemplateColumns = `repeat(${Math.ceil(Math.sqrt(num))}, 100px)`;
-  container.innerHTML = '';
+  container.innerHTML = "";
 
   for (let index = 0; index < num; index++) {
     let value = Arr[index];
     let div = document.createElement("div");
     div.classList.add("grid-item");
-    
+
     let front = document.createElement("div");
     front.classList.add("card", "front");
-    front.textContent = '';
+    front.textContent = "";
 
     let back = document.createElement("div");
     back.classList.add("card", "back");
     back.textContent = value;
-    
+
     div.appendChild(front);
     div.appendChild(back);
     container.appendChild(div);
 
-    div.addEventListener("click", function() {
+    div.addEventListener("click", function () {
+      console.log(1);
       if (lockBoard) return;
       if (div === firstCard) return;
 
@@ -126,7 +141,9 @@ function createCards(num) {
 }
 
 function checkForMatch() {
-  let isMatch = firstCard.querySelector('.back').textContent === secondCard.querySelector('.back').textContent;
+  let isMatch =
+    firstCard.querySelector(".back").textContent ===
+    secondCard.querySelector(".back").textContent;
 
   if (isMatch) {
     disableCards();
@@ -136,23 +153,24 @@ function checkForMatch() {
   }
 }
 
-function checkForWin(){
-    let flippedCards = document.querySelectorAll('.grid-item.flip');
+function checkForWin() {
+  let flippedCards = document.querySelectorAll(".grid-item.flip");
   if (flippedCards.length === container.children.length) {
     //setTimeout(() => {
-        //container.innerHTML = '';
-        //let div = document.createElement("div");
-        //div.textContent ="ניצחת";
-        //container.appendChild(div);
-        winMessage.style.display = 'flex';
-      //resetGame();
+    //container.innerHTML = '';
+    //let div = document.createElement("div");
+    //div.textContent ="ניצחת";
+    //container.appendChild(div);
+
+    winMessage.style.display = "flex";
+    //resetGame();
     //}, 500);
   }
 }
 
 function disableCards() {
-  firstCard.removeEventListener('click', createCards);
-  secondCard.removeEventListener('click', createCards);
+  firstCard.removeEventListener("click", createCards);
+  secondCard.removeEventListener("click", createCards);
 
   resetBoard();
 }
@@ -161,8 +179,8 @@ function unflipCards() {
   lockBoard = true;
 
   setTimeout(() => {
-    firstCard.classList.remove('flip');
-    secondCard.classList.remove('flip');
+    firstCard.classList.remove("flip");
+    secondCard.classList.remove("flip");
 
     resetBoard();
   }, 1500);
@@ -181,8 +199,8 @@ function shuffleArray(array) {
 }
 
 function resetGame() {
-    choise.style.display = "block";
+  choise.style.display = "block";
   container.style.display = "none";
-  container.innerHTML = '';
+  container.innerHTML = "";
   winMessage.style.display = "none";
-  }
+}
