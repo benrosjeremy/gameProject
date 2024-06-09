@@ -1,60 +1,4 @@
-// let choise = document.querySelector(".choise");
-// let easy = document.querySelector(".easy");
-// let medium = document.querySelector(".medium");
-// let hard = document.querySelector(".hard");
-// let container = document.querySelector(".container");
-// let arr = [ "😊", "😊","😂","😂","🤣","🤣","😍","😍","😘","😘","😎","😎","🤩","🤩","🙂","🙂",
-// ];
 
-// easy.addEventListener("click", function () {
-//   createCards(8);
-// });
-// medium.addEventListener("click", function () {
-//   createCards(12);
-// });
-// hard.addEventListener("click", function () {
-//   createCards(16);
-// });
-// let firstVal='';
-// function createCards(num) {
-//   let Arr = shuffleArray(arr.slice(0, 8));
-//   choise.style.display = "none";
-//   container.style.display = "grid";
-//   for (let index = 0; index < num; index++) {
-//     let value = Arr[index];
-//     let span = document.createElement("span");
-//     span.classList.add("span");
-//     let div = document.createElement("div");
-//     div.classList.add("grid-item");
-//     span.textContent = value;
-//     span.style.display = "none";
-//     div.appendChild(span);
-//     container.appendChild(div);
-
-// //     div.addEventListener("click", game);
-// //     function geme() {
-// //         span.style.display="block";
-// //         if(firstVal==='')
-// //             firstVal=span.value;
-// //         else if(firstVal !== span.value)
-// //             {
-// //                 span.style.display="none";
-// //                 //להפוך בחזרה את שני הקלפים
-// //                 firstVal='';
-// //             }
-// //             //בדיקה אם הכל כבר הפוך - ליגמור מישחק
-
-// //     }
-//   }
-// }
-
-// function shuffleArray(array) {
-//   for (let i = array.length - 1; i > 0; i--) {
-//     const j = Math.floor(Math.random() * (i + 1));
-//     [array[i], array[j]] = [array[j], array[i]];
-//   }
-//   return array;
-// }
 let choise = document.querySelector(".choise");
 let easy = document.querySelector(".easy");
 let medium = document.querySelector(".medium");
@@ -156,15 +100,12 @@ function checkForMatch() {
 function checkForWin() {
   let flippedCards = document.querySelectorAll(".grid-item.flip");
   if (flippedCards.length === container.children.length) {
-    //setTimeout(() => {
-    //container.innerHTML = '';
-    //let div = document.createElement("div");
-    //div.textContent ="ניצחת";
-    //container.appendChild(div);
 
-    winMessage.style.display = "flex";
-    //resetGame();
-    //}, 500);
+    setTimeout(func, 1000);
+    function func() {
+      winMessage.style.display = "flex";
+    }
+   
   }
 }
 

@@ -1,30 +1,29 @@
-*{
-    box-sizing: border-box;
-    margin: 0px;
-padding: 0px;
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
 }
 
 body {
-    /* font-family: Arial, Helvetica, sans-serif; */
-    background-image: url('../image/d6cfbh1-47931523-77f9-4ff2-b7c4-ea8083cdd544.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-family: 'ArcadeClassic', sans-serif;
+  background-image: url("../image/d6cfbh1-47931523-77f9-4ff2-b7c4-ea8083cdd544.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "ArcadeClassic", sans-serif;
+}
+header {
+  margin-top: 40px;
+  margin-bottom: 100px;
+  text-align: center;
+}
+h1 {
+  font-size: 64px;
+}
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
   }
-  header{
-    margin-top: 40px;
-    margin-bottom: 100px;
-    text-align: center;
+  .cancelbtn {
+    width: 100%;
   }
-  h1{
-    font-size:64px;
-  }
-  @media screen and (max-width: 300px) {
-    span.psw {
-      display: block;
-      float: none;
-    }
-    .cancelbtn {
-      width: 100%;
-    }
-  }
+}

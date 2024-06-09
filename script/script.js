@@ -35,6 +35,7 @@ function register() {
     setTimeout(showLogin, 2000);
   } else {
     displayMessage("registerMessage", "Please fill in all fields.", false);
+    setTimeout(showLogin, 2000);
   }
 }
 
