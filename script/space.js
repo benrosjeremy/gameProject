@@ -25,6 +25,8 @@ livesDisplay.innerHTML = `Lives: ${"❤️".repeat(lives)}`;
 document.body.append(livesDisplay);
 let myBoard = [];
 
+setUserInfo();
+
 for (let i = 0; i < 8; i++) {
   myBoard.push([]);
   for (let j = 0; j < 8; j++) {
@@ -42,7 +44,6 @@ document.addEventListener("keydown", moveKey);
 buttonStart.addEventListener("click", startGame);
 buttonPause.addEventListener("click", togglePause);
 
-
 document.querySelector("#play-again").addEventListener("click", () => {
   modal.style.display = "none";
   startGame();
@@ -51,6 +52,20 @@ document.querySelector("#play-again").addEventListener("click", () => {
 document.querySelector("#back").addEventListener("click", () => {
   window.location.replace("../html/games.html");
 });
+
+function setUserInfo(){
+  var storedUsers = JSON.parse(localStorage.getItem("users"));
+  if (storedUsers == null) storedUsers = [];
+  const user = storedUsers.find((user) => user.selectedUser == 1);
+  if (storedUsers != null)
+    document.getElementById("user_info").textContent =
+      "Welcome " +
+      user.username +
+      "!  your score in space ship game is: " +
+      user.spacescore +
+      ". your score in memory game is: " +
+      user.memoryscore;
+}
 
 function startGame() {
   resetGame();
@@ -72,8 +87,8 @@ function resetGame() {
 }
 
 function position() {
- x=3
- y=7
+  x = 3;
+  y = 7;
   myBoard[7][3].append(spaceShip);
 }
 
@@ -158,6 +173,11 @@ function loseLife() {
   livesDisplay.innerHTML = `Lives: ${"❤️".repeat(lives)}`;
   if (lives <= 0) {
     modal.style.display = "block";
+    var storedUsers = JSON.parse(localStorage.getItem("users"));
+    if (storedUsers == null) storedUsers = [];
+    var user = storedUsers.find((user) => user.selectedUser === 1);
+    user.spacescore = counter;
+    localStorage.setItem("users", JSON.stringify(storedUsers));
     clearInterval(intervalId);
     meteors.forEach((m) => m.remove());
     meteors = [];

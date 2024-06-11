@@ -1,4 +1,3 @@
-
 let choise = document.querySelector(".choise");
 let easy = document.querySelector(".easy");
 let medium = document.querySelector(".medium");
@@ -43,6 +42,20 @@ let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
 
+setUserInfo();
+function setUserInfo() {
+  var storedUsers = JSON.parse(localStorage.getItem("users"));
+  if (storedUsers == null) storedUsers = [];
+  const user = storedUsers.find((user) => user.selectedUser == 1);
+  if (storedUsers != null)
+    document.getElementById("user_info").textContent =
+      "Welcome " +
+      user.username +
+      "!  your score in space ship game is: " +
+      user.spacescore +
+      ". your score in memory game is: " +
+      user.memoryscore;
+}
 function createCards(num) {
   let Arr = shuffleArray(arr.slice(0, num));
   choise.style.display = "none";
@@ -100,12 +113,16 @@ function checkForMatch() {
 function checkForWin() {
   let flippedCards = document.querySelectorAll(".grid-item.flip");
   if (flippedCards.length === container.children.length) {
-
+    var storedUsers = JSON.parse(localStorage.getItem("users"));
+    if (storedUsers == null) storedUsers = [];
+    var user = storedUsers.find((user) => user.selectedUser === 1);
+    user.memoryscore = user.memoryscore + 1;
+    localStorage.setItem("users", JSON.stringify(storedUsers));
+    setUserInfo();
     setTimeout(func, 1000);
     function func() {
       winMessage.style.display = "flex";
     }
-   
   }
 }
 

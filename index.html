@@ -100,7 +100,7 @@
         </div>
       </div>
     </form>
-    <form id="registerForm" onsubmit="register(event)" style="display: none;">
+    <form id="registerForm" onsubmit="register(event)" style="display: none">
       <div class="form">
         <div class="container">
           <label for="newUname"><b>Username</b></label>
@@ -125,7 +125,12 @@
             required
           />
           <label for="confirmPsw"><b>Confirm Password</b></label>
-          <input type="password" id="confirmPsw" placeholder="Confirm Password" required>
+          <input
+            type="password"
+            id="confirmPsw"
+            placeholder="Confirm Password"
+            required
+          />
           <button type="submit">Sign Up</button>
           <button type="button" class="cancelbtn" onclick="showLogin()">
             Cancel
@@ -140,4 +145,3 @@
     <script src="../script/script.js"></script>
   </body>
 </html>
-

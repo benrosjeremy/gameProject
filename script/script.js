@@ -96,8 +96,8 @@ function validatePassword(password) {
   const minLength = 6;
   const hasLetter = /[a-zA-Z]/.test(password);
   const hasNumber = /[0-9]/.test(password);
-  const hasTav=/[!@#$%^&*]/.test(password);
-  return password.length >= minLength && hasLetter && hasNumber&&hasTav;
+  const hasTav = /[!@#$%^&*]/.test(password);
+  return password.length >= minLength && hasLetter && hasNumber && hasTav;
 }
 
 function register(e) {
@@ -105,6 +105,9 @@ function register(e) {
   const username = document.getElementById("newUname").value;
   const email = document.getElementById("newEmail").value;
   const password = document.getElementById("newPsw").value;
+  const memoryscore = 0;
+  const spacescore = 0;
+  const selectedUser = 0;
   const confirmPassword = document.getElementById("confirmPsw").value;
 
   if (!username || !email || !password || !confirmPassword) {
@@ -123,38 +126,55 @@ function register(e) {
   }
 
   if (!validatePassword(password)) {
-    displayMessage("registerMessage", "Password must be at least 6 characters long and include both letters and numbers.", false);
+    displayMessage(
+      "registerMessage",
+      "Password must be at least 6 characters long and include both letters and numbers.",
+      false
+    );
     return;
   }
 
-  const storedUsers = JSON.parse(localStorage.getItem("users") || "[]");
-  const userExists = storedUsers.some(user => user.username === username);
+  var storedUsers = JSON.parse(localStorage.getItem("users"));
+  if (storedUsers == null) storedUsers = [];
+  const userExists = storedUsers.some((user) => user.username === username);
 
   if (userExists) {
     displayMessage("registerMessage", "Username already exists.", false);
     return;
   }
 
-  const user = { username, email, password };
+  const user = {
+    username,
+    email,
+    password,
+    memoryscore,
+    spacescore,
+    selectedUser,
+  };
   storedUsers.push(user);
   localStorage.setItem("users", JSON.stringify(storedUsers));
   displayMessage("registerMessage", "Registration successful!", true);
-  clearInputs("registerForm");
   setTimeout(showLogin, 2000);
+  clearInputs("registerForm");
 }
 
 function login(e) {
   e.preventDefault(); // Prevent default form submission
   const username = document.getElementById("uname").value;
   const password = document.getElementById("psw").value;
-  const storedUsers = JSON.parse(localStorage.getItem("users") || "[]");
+  var storedUsers = JSON.parse(localStorage.getItem("users"));
+  if (storedUsers == null) storedUsers = [];
 
-  const user = storedUsers.find(user => user.username === username && user.password === password);
+  var user = storedUsers.find(
+    (user) => user.username === username && user.password === password
+  );
 
   if (user) {
     displayMessage("loginMessage", "Login successful!", true);
-    clearInputs("loginForm");
+    user.selectedUser = 1;
+    localStorage.setItem("users", JSON.stringify(storedUsers));
     setTimeout(() => {
+      clearInputs("loginForm");
       window.location.href = "html/games.html";
     }, 2000);
   } else {
@@ -164,3 +184,9 @@ function login(e) {
 
 document.getElementById("registerForm").addEventListener("submit", register);
 document.getElementById("loginForm").addEventListener("submit", login);
+
+var storedUsers = JSON.parse(localStorage.getItem("users"));
+if (storedUsers == null) storedUsers = [];
+
+for (var user in storedUsers) user.selectedUser = 0;
+localStorage.setItem("users", JSON.stringify(storedUsers));
