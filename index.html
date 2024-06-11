@@ -1,3 +1,4 @@
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -53,6 +54,7 @@
             id="newPsw"
             required
           />
+          <input type="password" id="confirmPsw" placeholder="Confirm Password">
           <button type="button" onclick="register()">Sign Up</button>
           <button type="button" class="cancelbtn" onclick="showLogin()">
             Cancel
@@ -66,4 +68,76 @@
     </button>
     <script src="script\script.js"></script>
   </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/normlize.css" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/index.css" />
+    <title>Jojo Games</title>
+  </head>
+  <body>
+    <h1>
+      <img src="../image/fced32d2f9744995b81d22508f21e1f9 (2).png" alt="Logo" />
+    </h1>
+    <form id="loginForm" onsubmit="login(event)">
+      <div class="form">
+        <div class="container">
+          <label for="uname"><b>Username</b></label>
+          <input type="text" placeholder="Enter Username" id="uname" required />
+          <label for="psw"><b>Password</b></label>
+          <input
+            type="password"
+            placeholder="Enter Password"
+            id="psw"
+            required
+          />
+          <button type="submit">Login</button>
+          <div id="loginMessage" class="message"></div>
+        </div>
+      </div>
+    </form>
+    <form id="registerForm" onsubmit="register(event)" style="display: none;">
+      <div class="form">
+        <div class="container">
+          <label for="newUname"><b>Username</b></label>
+          <input
+            type="text"
+            placeholder="Enter Username"
+            id="newUname"
+            required
+          />
+          <label for="newEmail"><b>Email</b></label>
+          <input
+            type="email"
+            placeholder="Enter Email"
+            id="newEmail"
+            required
+          />
+          <label for="newPsw"><b>Password</b></label>
+          <input
+            type="password"
+            placeholder="Enter Password"
+            id="newPsw"
+            required
+          />
+          <label for="confirmPsw"><b>Confirm Password</b></label>
+          <input type="password" id="confirmPsw" placeholder="Confirm Password" required>
+          <button type="submit">Sign Up</button>
+          <button type="button" class="cancelbtn" onclick="showLogin()">
+            Cancel
+          </button>
+          <div id="registerMessage" class="message"></div>
+        </div>
+      </div>
+    </form>
+    <button type="button" class="cancelbtn" onclick="showRegister()">
+      Sign-Up
+    </button>
+    <script src="../script/script.js"></script>
+  </body>
 </html>
+

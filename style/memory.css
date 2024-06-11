@@ -143,6 +143,9 @@
     font-size: 1em;
     cursor: pointer;
 }
+h2{
+  text-align: center;
+}
 @media screen and (max-width: 300px) {
   span.psw {
     display: block;
