@@ -26,7 +26,7 @@ let arr = [
 ];
 
 easy.addEventListener("click", function () {
-  back.style.display = "none";
+  // back.style.display = "none";
 
   createCards(8);
 });
